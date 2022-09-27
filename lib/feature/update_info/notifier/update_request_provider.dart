@@ -8,7 +8,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:version/version.dart';
 
-final updateRequesterProvider = FutureProvider<UpdateRequestType>((ref) async {
+// せめて「autoDispose」がついていた方が即時反映ができる気がする。
+final updateRequesterProvider =
+    FutureProvider.autoDispose<UpdateRequestType>((ref) async {
   // 初期化・アクティブベート済みのRemoteConfigインスタンス
   final remoteConfig = ref.watch(remoteConfigProvider);
   await remoteConfig.fetchAndActivate();

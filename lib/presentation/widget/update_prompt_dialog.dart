@@ -1,7 +1,7 @@
 import 'package:app_review/app_review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_sample/enum/update_request_type.dart';
-import 'package:flutter_app_sample/main.dart';
+import 'package:flutter_app_sample/presentation/page/my_home.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class UpdatePromptDialog extends ConsumerWidget {
