@@ -2,8 +2,8 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // remote configのprovider
-final remoteConfigProvider = Provider<FirebaseRemoteConfig>(
-  (ref) {
+final remoteConfigProvider = FutureProvider<FirebaseRemoteConfig>(
+  (ref) async {
     // 古いバージョンだとFirebaseRemoteConfigではなく、RemoteConfigだった。
     final rc = FirebaseRemoteConfig.instance;
     // 本番環境
@@ -12,7 +12,7 @@ final remoteConfigProvider = Provider<FirebaseRemoteConfig>(
     const interval = Duration.zero;
 
     // タイムアウトとフェッチのインターバル時間を設定する
-    rc.setConfigSettings(
+    await rc.setConfigSettings(
       RemoteConfigSettings(
         fetchTimeout: const Duration(minutes: 1),
         minimumFetchInterval: interval,

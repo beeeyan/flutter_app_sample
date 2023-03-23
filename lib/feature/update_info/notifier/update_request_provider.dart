@@ -12,7 +12,7 @@ import 'package:version/version.dart';
 final updateRequesterProvider =
     FutureProvider.autoDispose<UpdateRequestType>((ref) async {
   // 初期化・アクティブベート済みのRemoteConfigインスタンス
-  final remoteConfig = ref.watch(remoteConfigProvider);
+  final remoteConfig = await ref.watch(remoteConfigProvider.future);
   await remoteConfig.fetchAndActivate();
   // FirebaseのRemoteConfigコンソールで指定したキーを使って値を取得
   final string = remoteConfig.getString('update_info');
