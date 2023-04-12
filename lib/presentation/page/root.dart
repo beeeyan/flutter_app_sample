@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_sample/enum/bottom_bar_page_type.dart';
+import 'package:flutter_app_sample/feature/ad_mob/presentation/widget/ad_banner.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RootPage extends ConsumerWidget {
@@ -15,17 +16,24 @@ class RootPage extends ConsumerWidget {
         centerTitle: true,
       ),
       body: pageType.widget,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: pageType.index,
-        onTap: (index) =>
-            pageTypeNotifier.update((state) => BottomBarPageType.values[index]),
-        items:  <BottomNavigationBarItem>[
-          for (final pageType in BottomBarPageType.values)
-            BottomNavigationBarItem(
-              icon: pageType.buttonIcon,
-              label: pageType.title,
-            )
+      bottomNavigationBar: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const AdBanner(),
+          BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: pageType.index,
+            onTap: (index) =>
+                pageTypeNotifier.update((state) => BottomBarPageType.values[index]),
+            items:  <BottomNavigationBarItem>[
+              for (final pageType in BottomBarPageType.values)
+                BottomNavigationBarItem(
+                  icon: pageType.buttonIcon,
+                  label: pageType.title,
+                )
+            ],
+          ),
         ],
       ),
     );

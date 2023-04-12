@@ -5,15 +5,15 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final adMobNotifierProvider =
-    StateNotifierProvider.autoDispose<AdMobController, BannerAd?>(
-  (ref) => AdMobController(
+    StateNotifierProvider.autoDispose<AdMobNotifier, BannerAd?>(
+  (ref) => AdMobNotifier(
     iosAdId: 'ca-app-pub-3940256099942544/2934735716',
     androidAdId: 'ca-app-pub-3940256099942544/6300978111',
   ),
 );
 
-class AdMobController extends StateNotifier<BannerAd?> {
-  AdMobController({required this.iosAdId, required this.androidAdId})
+class AdMobNotifier extends StateNotifier<BannerAd?> {
+  AdMobNotifier({required this.iosAdId, required this.androidAdId})
       : super(null) {
     createBannerAd();
   }
