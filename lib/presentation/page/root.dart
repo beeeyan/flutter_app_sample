@@ -17,7 +17,7 @@ class RootPage extends ConsumerWidget {
       ),
       body: pageType.widget,
       bottomNavigationBar: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        // mainAxisAlignment: MainAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
         children: [
           const AdBanner(),
