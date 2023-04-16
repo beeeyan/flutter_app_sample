@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="work.sendfun.flutter_app_sample">
+    package="work.sendfun.sample.app">
    <application
         android:label="flutter_app_sample"
         android:name="${applicationName}"
