@@ -1,4 +1,3 @@
-import 'package:app_review/app_review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_sample/enum/update_request_type.dart';
 import 'package:flutter_app_sample/presentation/page/my_home.dart';
@@ -31,7 +30,8 @@ class UpdatePromptDialog extends ConsumerWidget {
             ),
           TextButton(
             onPressed: () {
-              AppReview.storeListing;
+              // パッケージの解決ができなかったのでコメントアウト
+              // AppReview.storeListing;
             },
             child: const Text('アップデート'),
           ),

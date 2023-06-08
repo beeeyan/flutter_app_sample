@@ -20,7 +20,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.1 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -29,18 +29,20 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  app_review: ^2.1.2+1
+  # app_review: ^2.1.2+1
+  connectivity_plus: ^4.0.1
   cupertino_icons: ^1.0.2
-  firebase_core: ^1.23.0
-  firebase_remote_config: ^2.0.18
+  dio: ^5.1.2
+  firebase_core: ^2.13.1
+  firebase_remote_config: ^4.2.2
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.5+1
   freezed_annotation: ^2.1.0
-  google_mobile_ads: ^2.1.0
-  hooks_riverpod: ^1.0.4
+  google_mobile_ads: ^3.0.0
+  hooks_riverpod: ^2.3.6
   logger: ^1.1.0
-  package_info_plus: ^1.4.3+1
+  package_info_plus: ^4.0.1
   version: ^3.0.2
 
 dev_dependencies:
