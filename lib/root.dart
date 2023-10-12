@@ -24,9 +24,9 @@ class RootPage extends ConsumerWidget {
           BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: pageType.index,
-            onTap: (index) =>
-                pageTypeNotifier.update((state) => BottomBarPageType.values[index]),
-            items:  <BottomNavigationBarItem>[
+            onTap: (index) => pageTypeNotifier
+                .update((state) => BottomBarPageType.values[index]),
+            items: <BottomNavigationBarItem>[
               for (final pageType in BottomBarPageType.values)
                 BottomNavigationBarItem(
                   icon: pageType.buttonIcon,

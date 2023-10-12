@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../presentation/common_widget/loading_widget.dart';
+import '../../../common_widget/loading_widget.dart';
 import '../models/pokemon.dart';
 import '../repositories/pokemon_repository.dart';
 

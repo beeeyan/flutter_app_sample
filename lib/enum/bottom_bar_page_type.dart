@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../feature/pokemon/presentation/pokemon_view.dart';
-import '../presentation/page/my_home.dart';
+import '../my_home.dart';
 
 final bottomBarPageTypeProvider =
     StateProvider<BottomBarPageType>((ref) => BottomBarPageType.home);

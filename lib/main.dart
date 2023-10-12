@@ -1,6 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_sample/presentation/page/root.dart';
+import 'package:flutter_app_sample/root.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() async {
