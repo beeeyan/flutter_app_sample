@@ -1,3 +1,5 @@
+// ignore_for_file: one_member_abstracts
+
 import 'package:dio/dio.dart';
 
 import '../model/response_result/response_result.dart';
@@ -14,56 +16,56 @@ abstract class AbstractApiClient {
     ProgressCallback onReceiveProgress,
   });
 
-  Future<ResponseResult> put(
-    String path, {
-    Map<String, dynamic> data,
-    Map<String, dynamic> queryParameters,
-    Map<String, dynamic> header,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
-  });
+  // Future<ResponseResult> put(
+  //   String path, {
+  //   Map<String, dynamic> data,
+  //   Map<String, dynamic> queryParameters,
+  //   Map<String, dynamic> header,
+  //   Options options,
+  //   CancelToken cancelToken,
+  //   ProgressCallback onSendProgress,
+  //   ProgressCallback onReceiveProgress,
+  // });
 
-  Future<ResponseResult> patch(
-    String path, {
-    Map<String, dynamic> data,
-    Map<String, dynamic> queryParameters,
-    Map<String, dynamic> header,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
-  });
+  // Future<ResponseResult> patch(
+  //   String path, {
+  //   Map<String, dynamic> data,
+  //   Map<String, dynamic> queryParameters,
+  //   Map<String, dynamic> header,
+  //   Options options,
+  //   CancelToken cancelToken,
+  //   ProgressCallback onSendProgress,
+  //   ProgressCallback onReceiveProgress,
+  // });
 
-  Future<ResponseResult> post(
-    String path, {
-    Map<String, dynamic> data,
-    Map<String, dynamic> queryParameters,
-    Map<String, dynamic> header,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
-  });
+  // Future<ResponseResult> post(
+  //   String path, {
+  //   Map<String, dynamic> data,
+  //   Map<String, dynamic> queryParameters,
+  //   Map<String, dynamic> header,
+  //   Options options,
+  //   CancelToken cancelToken,
+  //   ProgressCallback onSendProgress,
+  //   ProgressCallback onReceiveProgress,
+  // });
 
-  Future<ResponseResult> postDynamicData(
-    String path, {
-    dynamic data,
-    Map<String, dynamic> queryParameters,
-    Map<String, dynamic> header,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
-  });
+  // Future<ResponseResult> postDynamicData(
+  //   String path, {
+  //   dynamic data,
+  //   Map<String, dynamic> queryParameters,
+  //   Map<String, dynamic> header,
+  //   Options options,
+  //   CancelToken cancelToken,
+  //   ProgressCallback onSendProgress,
+  //   ProgressCallback onReceiveProgress,
+  // });
 
-  Future<ResponseResult> delete(
-    String path, {
-    Map<String, dynamic> data,
-    Map<String, dynamic> queryParameters,
-    Map<String, dynamic> header,
-    Options options,
-    CancelToken cancelToken,
-  });
+  // Future<ResponseResult> delete(
+  //   String path, {
+  //   Map<String, dynamic> data,
+  //   Map<String, dynamic> queryParameters,
+  //   Map<String, dynamic> header,
+  //   Options options,
+  //   CancelToken cancelToken,
+  // });
 }

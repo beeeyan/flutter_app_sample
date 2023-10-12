@@ -31,11 +31,11 @@ Dio customizeDio() {
     ]);
 }
 
-extension DioErrorTypeExt on DioErrorType {
+extension DioErrorTypeExt on DioExceptionType {
   /// DioErrorType がタイムアウトに該当するかどうか
   bool get isTimeout => [
-        DioErrorType.connectionTimeout,
-        DioErrorType.receiveTimeout,
-        DioErrorType.sendTimeout,
+        DioExceptionType.connectionTimeout,
+        DioExceptionType.receiveTimeout,
+        DioExceptionType.sendTimeout,
       ].contains(this);
 }

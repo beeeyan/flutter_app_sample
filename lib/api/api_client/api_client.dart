@@ -43,7 +43,7 @@ class ApiClient implements AbstractApiClient {
       );
       final baseResponseData = _parseResponse(response);
       return ResponseResult.success(data: baseResponseData);
-    } on DioError catch (dioError) {
+    } on DioException catch (dioError) {
       final exception = _handleDioError(dioError);
       return ResponseResult.failure(
         message: exception.toString(),
@@ -65,226 +65,226 @@ class ApiClient implements AbstractApiClient {
     }
   }
 
-  @override
-  Future<ResponseResult> post(
-    String path, {
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? header,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final response = await _dio.post<dynamic>(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options ?? Options(headers: header),
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      final baseResponseData = _parseResponse(response);
-      return ResponseResult.success(data: baseResponseData);
-    } on DioError catch (dioError) {
-      final exception = _handleDioError(dioError);
-      return ResponseResult.failure(
-        message: exception.toString(),
-      );
-    } on ApiException catch (e) {
-      return ResponseResult.failure(
-        message: e.message ?? e.toString(),
-      );
-    } on SocketException {
-      return const ResponseResult.failure(
-        message: networkNotConnected,
-      );
-    } on FormatException {
-      return const ResponseResult.failure(
-        message: responseFormatNotValid,
-      );
-    } on Exception catch (e) {
-      return ResponseResult.failure(message: e.toString());
-    }
-  }
+  // @override
+  // Future<ResponseResult> post(
+  //   String path, {
+  //   Map<String, dynamic>? data,
+  //   Map<String, dynamic>? queryParameters,
+  //   Map<String, dynamic>? header,
+  //   Options? options,
+  //   CancelToken? cancelToken,
+  //   ProgressCallback? onSendProgress,
+  //   ProgressCallback? onReceiveProgress,
+  // }) async {
+  //   try {
+  //     final response = await _dio.post<dynamic>(
+  //       path,
+  //       data: data,
+  //       queryParameters: queryParameters,
+  //       options: options ?? Options(headers: header),
+  //       cancelToken: cancelToken,
+  //       onSendProgress: onSendProgress,
+  //       onReceiveProgress: onReceiveProgress,
+  //     );
+  //     final baseResponseData = _parseResponse(response);
+  //     return ResponseResult.success(data: baseResponseData);
+  //   } on DioException catch (dioError) {
+  //     final exception = _handleDioError(dioError);
+  //     return ResponseResult.failure(
+  //       message: exception.toString(),
+  //     );
+  //   } on ApiException catch (e) {
+  //     return ResponseResult.failure(
+  //       message: e.message ?? e.toString(),
+  //     );
+  //   } on SocketException {
+  //     return const ResponseResult.failure(
+  //       message: networkNotConnected,
+  //     );
+  //   } on FormatException {
+  //     return const ResponseResult.failure(
+  //       message: responseFormatNotValid,
+  //     );
+  //   } on Exception catch (e) {
+  //     return ResponseResult.failure(message: e.toString());
+  //   }
+  // }
 
-  @override
-  Future<ResponseResult> postDynamicData(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? header,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final response = await _dio.post<dynamic>(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options ?? Options(headers: header),
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      final baseResponseData = _parseResponse(response);
-      return ResponseResult.success(data: baseResponseData);
-    } on DioError catch (dioError) {
-      final exception = _handleDioError(dioError);
-      return ResponseResult.failure(
-        message: exception.toString(),
-      );
-    } on ApiException catch (e) {
-      return ResponseResult.failure(
-        message: e.message ?? e.toString(),
-      );
-    } on SocketException {
-      return const ResponseResult.failure(
-        message: networkNotConnected,
-      );
-    } on FormatException {
-      return const ResponseResult.failure(
-        message: responseFormatNotValid,
-      );
-    } on Exception catch (e) {
-      return ResponseResult.failure(message: e.toString());
-    }
-  }
+  // @override
+  // Future<ResponseResult> postDynamicData(
+  //   String path, {
+  //   dynamic data,
+  //   Map<String, dynamic>? queryParameters,
+  //   Map<String, dynamic>? header,
+  //   Options? options,
+  //   CancelToken? cancelToken,
+  //   ProgressCallback? onSendProgress,
+  //   ProgressCallback? onReceiveProgress,
+  // }) async {
+  //   try {
+  //     final response = await _dio.post<dynamic>(
+  //       path,
+  //       data: data,
+  //       queryParameters: queryParameters,
+  //       options: options ?? Options(headers: header),
+  //       cancelToken: cancelToken,
+  //       onSendProgress: onSendProgress,
+  //       onReceiveProgress: onReceiveProgress,
+  //     );
+  //     final baseResponseData = _parseResponse(response);
+  //     return ResponseResult.success(data: baseResponseData);
+  //   } on DioException catch (dioError) {
+  //     final exception = _handleDioError(dioError);
+  //     return ResponseResult.failure(
+  //       message: exception.toString(),
+  //     );
+  //   } on ApiException catch (e) {
+  //     return ResponseResult.failure(
+  //       message: e.message ?? e.toString(),
+  //     );
+  //   } on SocketException {
+  //     return const ResponseResult.failure(
+  //       message: networkNotConnected,
+  //     );
+  //   } on FormatException {
+  //     return const ResponseResult.failure(
+  //       message: responseFormatNotValid,
+  //     );
+  //   } on Exception catch (e) {
+  //     return ResponseResult.failure(message: e.toString());
+  //   }
+  // }
 
-  @override
-  Future<ResponseResult> patch(
-    String path, {
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? header,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final response = await _dio.patch<dynamic>(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options ?? Options(headers: header),
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      final baseResponseData = _parseResponse(response);
-      return ResponseResult.success(data: baseResponseData);
-    } on DioError catch (dioError) {
-      final exception = _handleDioError(dioError);
-      return ResponseResult.failure(
-        message: exception.toString(),
-      );
-    } on ApiException catch (e) {
-      return ResponseResult.failure(
-        message: e.message ?? e.toString(),
-      );
-    } on SocketException {
-      return const ResponseResult.failure(
-        message: networkNotConnected,
-      );
-    } on FormatException {
-      return const ResponseResult.failure(
-        message: responseFormatNotValid,
-      );
-    } on Exception catch (e) {
-      return ResponseResult.failure(message: e.toString());
-    }
-  }
+  // @override
+  // Future<ResponseResult> patch(
+  //   String path, {
+  //   Map<String, dynamic>? data,
+  //   Map<String, dynamic>? queryParameters,
+  //   Map<String, dynamic>? header,
+  //   Options? options,
+  //   CancelToken? cancelToken,
+  //   ProgressCallback? onSendProgress,
+  //   ProgressCallback? onReceiveProgress,
+  // }) async {
+  //   try {
+  //     final response = await _dio.patch<dynamic>(
+  //       path,
+  //       data: data,
+  //       queryParameters: queryParameters,
+  //       options: options ?? Options(headers: header),
+  //       cancelToken: cancelToken,
+  //       onSendProgress: onSendProgress,
+  //       onReceiveProgress: onReceiveProgress,
+  //     );
+  //     final baseResponseData = _parseResponse(response);
+  //     return ResponseResult.success(data: baseResponseData);
+  //   } on DioException catch (dioError) {
+  //     final exception = _handleDioError(dioError);
+  //     return ResponseResult.failure(
+  //       message: exception.toString(),
+  //     );
+  //   } on ApiException catch (e) {
+  //     return ResponseResult.failure(
+  //       message: e.message ?? e.toString(),
+  //     );
+  //   } on SocketException {
+  //     return const ResponseResult.failure(
+  //       message: networkNotConnected,
+  //     );
+  //   } on FormatException {
+  //     return const ResponseResult.failure(
+  //       message: responseFormatNotValid,
+  //     );
+  //   } on Exception catch (e) {
+  //     return ResponseResult.failure(message: e.toString());
+  //   }
+  // }
 
-  @override
-  Future<ResponseResult> put(
-    String path, {
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? header,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final response = await _dio.put<dynamic>(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options ?? Options(headers: header),
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      final baseResponseData = _parseResponse(response);
-      return ResponseResult.success(data: baseResponseData);
-    } on DioError catch (dioError) {
-      final exception = _handleDioError(dioError);
-      return ResponseResult.failure(
-        message: exception.toString(),
-      );
-    } on ApiException catch (e) {
-      return ResponseResult.failure(
-        message: e.message ?? e.toString(),
-      );
-    } on SocketException {
-      return const ResponseResult.failure(
-        message: networkNotConnected,
-      );
-    } on FormatException {
-      return const ResponseResult.failure(
-        message: responseFormatNotValid,
-      );
-    } on Exception catch (e) {
-      return ResponseResult.failure(message: e.toString());
-    }
-  }
+  // @override
+  // Future<ResponseResult> put(
+  //   String path, {
+  //   Map<String, dynamic>? data,
+  //   Map<String, dynamic>? queryParameters,
+  //   Map<String, dynamic>? header,
+  //   Options? options,
+  //   CancelToken? cancelToken,
+  //   ProgressCallback? onSendProgress,
+  //   ProgressCallback? onReceiveProgress,
+  // }) async {
+  //   try {
+  //     final response = await _dio.put<dynamic>(
+  //       path,
+  //       data: data,
+  //       queryParameters: queryParameters,
+  //       options: options ?? Options(headers: header),
+  //       cancelToken: cancelToken,
+  //       onSendProgress: onSendProgress,
+  //       onReceiveProgress: onReceiveProgress,
+  //     );
+  //     final baseResponseData = _parseResponse(response);
+  //     return ResponseResult.success(data: baseResponseData);
+  //   } on DioException catch (dioError) {
+  //     final exception = _handleDioError(dioError);
+  //     return ResponseResult.failure(
+  //       message: exception.toString(),
+  //     );
+  //   } on ApiException catch (e) {
+  //     return ResponseResult.failure(
+  //       message: e.message ?? e.toString(),
+  //     );
+  //   } on SocketException {
+  //     return const ResponseResult.failure(
+  //       message: networkNotConnected,
+  //     );
+  //   } on FormatException {
+  //     return const ResponseResult.failure(
+  //       message: responseFormatNotValid,
+  //     );
+  //   } on Exception catch (e) {
+  //     return ResponseResult.failure(message: e.toString());
+  //   }
+  // }
 
-  @override
-  Future<ResponseResult> delete(
-    String path, {
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? header,
-    Options? options,
-    CancelToken? cancelToken,
-  }) async {
-    try {
-      final response = await _dio.delete<dynamic>(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options ?? Options(headers: header),
-        cancelToken: cancelToken,
-      );
-      final baseResponseData = _parseResponse(response);
-      return ResponseResult.success(data: baseResponseData);
-    } on DioError catch (dioError) {
-      final exception = _handleDioError(dioError);
-      return ResponseResult.failure(
-        message: exception.toString(),
-      );
-    } on ApiException catch (e) {
-      return ResponseResult.failure(
-        message: e.message ?? e.toString(),
-      );
-    } on SocketException {
-      return const ResponseResult.failure(
-        message: networkNotConnected,
-      );
-    } on FormatException {
-      return const ResponseResult.failure(
-        message: responseFormatNotValid,
-      );
-    } on Exception catch (e) {
-      return ResponseResult.failure(message: e.toString());
-    }
-  }
+  // @override
+  // Future<ResponseResult> delete(
+  //   String path, {
+  //   Map<String, dynamic>? data,
+  //   Map<String, dynamic>? queryParameters,
+  //   Map<String, dynamic>? header,
+  //   Options? options,
+  //   CancelToken? cancelToken,
+  // }) async {
+  //   try {
+  //     final response = await _dio.delete<dynamic>(
+  //       path,
+  //       data: data,
+  //       queryParameters: queryParameters,
+  //       options: options ?? Options(headers: header),
+  //       cancelToken: cancelToken,
+  //     );
+  //     final baseResponseData = _parseResponse(response);
+  //     return ResponseResult.success(data: baseResponseData);
+  //   } on DioException catch (dioError) {
+  //     final exception = _handleDioError(dioError);
+  //     return ResponseResult.failure(
+  //       message: exception.toString(),
+  //     );
+  //   } on ApiException catch (e) {
+  //     return ResponseResult.failure(
+  //       message: e.message ?? e.toString(),
+  //     );
+  //   } on SocketException {
+  //     return const ResponseResult.failure(
+  //       message: networkNotConnected,
+  //     );
+  //   } on FormatException {
+  //     return const ResponseResult.failure(
+  //       message: responseFormatNotValid,
+  //     );
+  //   } on Exception catch (e) {
+  //     return ResponseResult.failure(message: e.toString());
+  //   }
+  // }
 
   /// Dio の Response を受け取り、dynamic 型のレスポンスボディを BaseResponseData に変換して返す。
   BaseResponseData _parseResponse(Response<dynamic> response) {
@@ -323,7 +323,7 @@ class ApiClient implements AbstractApiClient {
 
   /// DioError を受けて、何かしらの Exception を return する。
   /// 呼び出し側ではそれをスローする。
-  Exception _handleDioError(DioError dioError) {
+  Exception _handleDioError(DioException dioError) {
     final errorType = dioError.type;
     final errorResponse = dioError.response;
     final dynamic error = dioError.error;

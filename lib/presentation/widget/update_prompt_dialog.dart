@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_sample/enum/update_request_type.dart';
-import 'package:flutter_app_sample/presentation/page/my_home.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../page/forced_upgrade.dart';
 
 class UpdatePromptDialog extends ConsumerWidget {
   const UpdatePromptDialog({

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_sample/presentation/page/forced_upgrade.dart';
 import 'package:flutter_app_sample/presentation/page/my_home.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -9,6 +10,7 @@ enum BottomBarPageType {
   home(
     'ホーム',
     Icon(Icons.home),
+    // ForcedUpgradePage(),
     MyHomePage(),
   ),
   secondPage(
