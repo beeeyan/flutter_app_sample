@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'update_info.dart';
 
@@ -39,38 +39,42 @@ mixin _$UpdateInfo {
 abstract class $UpdateInfoCopyWith<$Res> {
   factory $UpdateInfoCopyWith(
           UpdateInfo value, $Res Function(UpdateInfo) then) =
-      _$UpdateInfoCopyWithImpl<$Res>;
+      _$UpdateInfoCopyWithImpl<$Res, UpdateInfo>;
+  @useResult
   $Res call({String requiredVersion, bool canCancel, DateTime enabledAt});
 }
 
 /// @nodoc
-class _$UpdateInfoCopyWithImpl<$Res> implements $UpdateInfoCopyWith<$Res> {
+class _$UpdateInfoCopyWithImpl<$Res, $Val extends UpdateInfo>
+    implements $UpdateInfoCopyWith<$Res> {
   _$UpdateInfoCopyWithImpl(this._value, this._then);
 
-  final UpdateInfo _value;
   // ignore: unused_field
-  final $Res Function(UpdateInfo) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? requiredVersion = freezed,
-    Object? canCancel = freezed,
-    Object? enabledAt = freezed,
+    Object? requiredVersion = null,
+    Object? canCancel = null,
+    Object? enabledAt = null,
   }) {
     return _then(_value.copyWith(
-      requiredVersion: requiredVersion == freezed
+      requiredVersion: null == requiredVersion
           ? _value.requiredVersion
           : requiredVersion // ignore: cast_nullable_to_non_nullable
               as String,
-      canCancel: canCancel == freezed
+      canCancel: null == canCancel
           ? _value.canCancel
           : canCancel // ignore: cast_nullable_to_non_nullable
               as bool,
-      enabledAt: enabledAt == freezed
+      enabledAt: null == enabledAt
           ? _value.enabledAt
           : enabledAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
@@ -81,35 +85,35 @@ abstract class _$$_UpdateInfoCopyWith<$Res>
           _$_UpdateInfo value, $Res Function(_$_UpdateInfo) then) =
       __$$_UpdateInfoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String requiredVersion, bool canCancel, DateTime enabledAt});
 }
 
 /// @nodoc
-class __$$_UpdateInfoCopyWithImpl<$Res> extends _$UpdateInfoCopyWithImpl<$Res>
+class __$$_UpdateInfoCopyWithImpl<$Res>
+    extends _$UpdateInfoCopyWithImpl<$Res, _$_UpdateInfo>
     implements _$$_UpdateInfoCopyWith<$Res> {
   __$$_UpdateInfoCopyWithImpl(
       _$_UpdateInfo _value, $Res Function(_$_UpdateInfo) _then)
-      : super(_value, (v) => _then(v as _$_UpdateInfo));
+      : super(_value, _then);
 
-  @override
-  _$_UpdateInfo get _value => super._value as _$_UpdateInfo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? requiredVersion = freezed,
-    Object? canCancel = freezed,
-    Object? enabledAt = freezed,
+    Object? requiredVersion = null,
+    Object? canCancel = null,
+    Object? enabledAt = null,
   }) {
     return _then(_$_UpdateInfo(
-      requiredVersion: requiredVersion == freezed
+      requiredVersion: null == requiredVersion
           ? _value.requiredVersion
           : requiredVersion // ignore: cast_nullable_to_non_nullable
               as String,
-      canCancel: canCancel == freezed
+      canCancel: null == canCancel
           ? _value.canCancel
           : canCancel // ignore: cast_nullable_to_non_nullable
               as bool,
-      enabledAt: enabledAt == freezed
+      enabledAt: null == enabledAt
           ? _value.enabledAt
           : enabledAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -151,22 +155,22 @@ class _$_UpdateInfo implements _UpdateInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UpdateInfo &&
-            const DeepCollectionEquality()
-                .equals(other.requiredVersion, requiredVersion) &&
-            const DeepCollectionEquality().equals(other.canCancel, canCancel) &&
-            const DeepCollectionEquality().equals(other.enabledAt, enabledAt));
+            (identical(other.requiredVersion, requiredVersion) ||
+                other.requiredVersion == requiredVersion) &&
+            (identical(other.canCancel, canCancel) ||
+                other.canCancel == canCancel) &&
+            (identical(other.enabledAt, enabledAt) ||
+                other.enabledAt == enabledAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(requiredVersion),
-      const DeepCollectionEquality().hash(canCancel),
-      const DeepCollectionEquality().hash(enabledAt));
+  int get hashCode =>
+      Object.hash(runtimeType, requiredVersion, canCancel, enabledAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UpdateInfoCopyWith<_$_UpdateInfo> get copyWith =>
       __$$_UpdateInfoCopyWithImpl<_$_UpdateInfo>(this, _$identity);
 

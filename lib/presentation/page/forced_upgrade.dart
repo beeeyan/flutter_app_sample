@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../enum/update_request_type.dart';
 import '../../feature/update_info/notifier/update_request_provider.dart';
-import '../widget/update_prompt_dialog.dart';
+import '../common_widget/update_prompt_dialog.dart';
 
 
 // アップデートがあった場合のキャンセルしたかどうかのフラグ

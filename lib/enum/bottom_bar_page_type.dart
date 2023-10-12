@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_sample/presentation/page/forced_upgrade.dart';
-import 'package:flutter_app_sample/presentation/page/my_home.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../feature/pokemon/presentation/pokemon_view.dart';
+import '../presentation/page/my_home.dart';
 
 final bottomBarPageTypeProvider =
     StateProvider<BottomBarPageType>((ref) => BottomBarPageType.home);
@@ -14,11 +15,9 @@ enum BottomBarPageType {
     MyHomePage(),
   ),
   secondPage(
-    '別ページ',
+    'ポケモン',
     Icon(Icons.bookmark_outlined),
-    Center(
-      child: Text('普通'),
-    ),
+    PokemonViewPage(),
   );
 
   const BottomBarPageType(
