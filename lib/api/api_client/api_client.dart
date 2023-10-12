@@ -41,7 +41,7 @@ class ApiClient implements AbstractApiClient {
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
-      final baseResponseData = _parseResponse(response);
+      final baseResponseData = parseResponse(response);
       return ResponseResult.success(data: baseResponseData);
     } on DioException catch (dioError) {
       final exception = _handleDioError(dioError);
@@ -286,8 +286,27 @@ class ApiClient implements AbstractApiClient {
   //   }
   // }
 
+  /// DioError を受けて、何かしらの Exception を return する。
+  /// 呼び出し側ではそれをスローする。
+  Exception _handleDioError(DioException dioError) {
+    final errorType = dioError.type;
+    final errorResponse = dioError.response;
+    final dynamic error = dioError.error;
+    if (errorType.isTimeout) {
+      return const ApiTimeoutException();
+    }
+    if (error is ErrorCode && error == ErrorCode.networkNotConnected) {
+      return const NetworkNotConnectedException();
+    }
+    if (errorResponse == null) {
+      return const ApiException();
+    }
+    return const ApiException();
+  }
+}
+
   /// Dio の Response を受け取り、dynamic 型のレスポンスボディを BaseResponseData に変換して返す。
-  BaseResponseData _parseResponse(Response<dynamic> response) {
+  BaseResponseData parseResponse(Response<dynamic> response) {
     final statusCode = response.statusCode;
     final baseResponseData = BaseResponseData.fromDynamic(response.data);
     _validateResponse(statusCode: statusCode, data: baseResponseData);
@@ -320,22 +339,3 @@ class ApiClient implements AbstractApiClient {
       throw ApiException(message: message);
     }
   }
-
-  /// DioError を受けて、何かしらの Exception を return する。
-  /// 呼び出し側ではそれをスローする。
-  Exception _handleDioError(DioException dioError) {
-    final errorType = dioError.type;
-    final errorResponse = dioError.response;
-    final dynamic error = dioError.error;
-    if (errorType.isTimeout) {
-      return const ApiTimeoutException();
-    }
-    if (error is ErrorCode && error == ErrorCode.networkNotConnected) {
-      return const NetworkNotConnectedException();
-    }
-    if (errorResponse == null) {
-      return const ApiException();
-    }
-    return const ApiException();
-  }
-}
