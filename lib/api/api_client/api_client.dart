@@ -287,6 +287,14 @@ class ApiClient implements AbstractApiClient {
   //   }
   // }
 
+  /// Dio の Response を受け取り、dynamic 型のレスポンスボディを BaseResponseData に変換して返す。
+  BaseResponseData _parseResponse(Response<dynamic> response) {
+    final statusCode = response.statusCode;
+    final baseResponseData = BaseResponseData.fromDynamic(response.data);
+    validateResponse(statusCode: statusCode, data: baseResponseData);
+    return baseResponseData;
+  }
+
   /// DioError を受けて、何かしらの Exception を return する。
   /// 呼び出し側ではそれをスローする。
   Exception _handleDioError(DioException dioError) {
@@ -305,11 +313,3 @@ class ApiClient implements AbstractApiClient {
     return const ApiException();
   }
 }
-
-  /// Dio の Response を受け取り、dynamic 型のレスポンスボディを BaseResponseData に変換して返す。
-  BaseResponseData _parseResponse(Response<dynamic> response) {
-    final statusCode = response.statusCode;
-    final baseResponseData = BaseResponseData.fromDynamic(response.data);
-    validateResponse(statusCode: statusCode, data: baseResponseData);
-    return baseResponseData;
-  }
