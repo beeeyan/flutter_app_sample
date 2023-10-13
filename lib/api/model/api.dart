@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../util/empty_map.dart';
 
 /// 型不定 (dynamic) なレスポンスデータを Map<String, dynamic> に変換する。
@@ -11,6 +13,9 @@ Map<String, dynamic> toResponseJson(dynamic data) {
   }
   if (data is Map) {
     return data as Map<String, dynamic>;
+  }
+  if (data is String) {
+    return json.decode(data) as Map<String, dynamic>;
   }
   return emptyMap;
 }
