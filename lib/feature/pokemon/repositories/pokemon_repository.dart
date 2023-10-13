@@ -2,24 +2,23 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/api_client/abstract_api_client.dart';
 import '../../../api/api_client/api_client.dart';
-import '../../../api/api_client/api_client_http.dart';
 import '../../../util/app_exception.dart';
 import '../base_url.dart';
 import '../models/pokemon.dart';
 
 final pokemonRepositoryProvider = Provider(
   (ref) => PokemonRepository(
-    client: ref.watch(apiClientHttpProvider),
+    ref.watch(apiClientProvider),
   ),
 );
 
 class PokemonRepository {
-  PokemonRepository({required this.client});
+  PokemonRepository(this._client);
 
-  final AbstractApiClient client;
+  final AbstractApiClient _client;
 
   Future<Pokemon> fetch() async {
-    final response = await client.get('$pokeApiRoute/pokemon/25');
+    final response = await _client.get('$pokeApiRoute/pokemon/25');
 
     final result = response.when(
       success: (data) {
