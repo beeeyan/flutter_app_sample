@@ -1,7 +1,5 @@
 // ignore_for_file: one_member_abstracts
 
-import 'package:dio/dio.dart';
-
 import '../model/response_result/response_result.dart';
 
 /// dio.dart の abstract class Dio の形式に沿った
@@ -11,9 +9,10 @@ abstract class AbstractApiClient {
     String path, {
     Map<String, dynamic> queryParameters,
     Map<String, dynamic> header,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onReceiveProgress,
+    // dioに依存している部分は一時的にコメントアウト
+    // Options options,
+    // CancelToken cancelToken,
+    // ProgressCallback onReceiveProgress,
   });
 
   // Future<ResponseResult> put(
