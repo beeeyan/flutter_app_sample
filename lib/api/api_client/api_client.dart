@@ -29,17 +29,17 @@ class ApiClient implements AbstractApiClient {
     String path, {
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? header,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onReceiveProgress,
+    // Options? options,
+    // CancelToken? cancelToken,
+    // ProgressCallback? onReceiveProgress,
   }) async {
     try {
       final response = await _dio.get<dynamic>(
         path,
         queryParameters: queryParameters,
-        options: options ?? Options(headers: header),
-        cancelToken: cancelToken,
-        onReceiveProgress: onReceiveProgress,
+        // options: options ?? Options(headers: header),
+        // cancelToken: cancelToken,
+        // onReceiveProgress: onReceiveProgress,
       );
       final baseResponseData = _parseResponse(response);
       return ResponseResult.success(data: baseResponseData);
