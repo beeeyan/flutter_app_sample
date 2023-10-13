@@ -10,8 +10,9 @@ import '../dio/dio.dart';
 import '../model/base_response_data/base_response_data.dart';
 import '../model/response_result/response_result.dart';
 import 'abstract_api_client.dart';
+import 'api_client_helper.dart';
 
-final apiClientProvider = Provider<ApiClient>(
+final apiClientProvider = Provider<AbstractApiClient>(
   (ref) => ApiClient(
     ref.watch(dioProvider),
   ),
@@ -290,35 +291,8 @@ class ApiClient implements AbstractApiClient {
   BaseResponseData _parseResponse(Response<dynamic> response) {
     final statusCode = response.statusCode;
     final baseResponseData = BaseResponseData.fromDynamic(response.data);
-    _validateResponse(statusCode: statusCode, data: baseResponseData);
+    validateResponse(statusCode: statusCode, data: baseResponseData);
     return baseResponseData;
-  }
-
-  /// レスポンスのステータスコードを検証する。
-  /// レスポンスボディに 'message' フィールドがある場合はそれを、
-  /// そうでない場合は適当なエラーメッセージを例外型の message に格納してスローする
-  void _validateResponse({
-    required int? statusCode,
-    required BaseResponseData data,
-  }) {
-    final message = data.main['message'] as String?;
-    if (statusCode == 400) {
-      throw ApiException(message: message);
-    }
-    if (statusCode == 401) {
-      throw UnauthorizedException(message: message);
-    }
-    if (statusCode == 403) {
-      throw ForbiddenException(message: message);
-    }
-    if (statusCode == 404) {
-      throw ApiNotFoundException(message: message);
-    }
-    // statusCode が null のときはとりあえず 400 番扱いで良いか確認が必要
-    // そもそも、それがどのような場合かは特定できていない。
-    if ((statusCode ?? 400) >= 400) {
-      throw ApiException(message: message);
-    }
   }
 
   /// DioError を受けて、何かしらの Exception を return する。
