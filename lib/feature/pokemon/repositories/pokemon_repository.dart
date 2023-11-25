@@ -17,8 +17,8 @@ class PokemonRepository {
 
   final AbstractApiClient _client;
 
-  Future<Pokemon> fetch() async {
-    final response = await _client.get('$pokeApiRoute/pokemon/25');
+  Future<Pokemon> fetch(String no) async {
+    final response = await _client.get('$pokeApiRoute/pokemon/$no');
 
     final result = response.when(
       success: (data) {
