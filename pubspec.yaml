@@ -40,6 +40,7 @@ dependencies:
   gap: ^3.0.1
   google_mobile_ads: ^3.0.0
   hooks_riverpod: ^2.3.6
+  http: ^1.1.0
   logger: ^1.1.0
   package_info_plus: ^4.0.1
   version: ^3.0.2

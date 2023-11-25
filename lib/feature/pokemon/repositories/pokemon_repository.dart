@@ -1,14 +1,14 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/api_client/abstract_api_client.dart';
-import '../../../api/api_client/api_client.dart';
+import '../../../api/api_client/api_client_http.dart';
 import '../../../util/app_exception.dart';
 import '../base_url.dart';
 import '../models/pokemon.dart';
 
 final pokemonRepositoryProvider = Provider(
   (ref) => PokemonRepository(
-    ref.watch(apiClientProvider),
+    ref.watch(apiClientHttpProvider),
   ),
 );
 
