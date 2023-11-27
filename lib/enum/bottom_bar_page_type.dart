@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_sample/feature/pull_down/presentation/pull_down_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../feature/pokemon/presentation/pokemon_view.dart';
@@ -18,6 +19,11 @@ enum BottomBarPageType {
     'ポケモン',
     Icon(Icons.bookmark_outlined),
     PokemonViewPage(),
+  ),
+  thirdPage(
+    'プルダウン',
+    Icon(Icons.playlist_add_check),
+    PullDownPage(),
   );
 
   const BottomBarPageType(
