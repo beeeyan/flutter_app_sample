@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_sample/feature/pull_down/presentation/pull_down_page.dart';
+import 'package:flutter_app_sample/feature/drop_down/presentation/drop_down_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../feature/pokemon/presentation/pokemon_view.dart';
@@ -23,7 +23,7 @@ enum BottomBarPageType {
   thirdPage(
     'プルダウン',
     Icon(Icons.playlist_add_check),
-    PullDownPage(),
+    DropdownPage(),
   );
 
   const BottomBarPageType(
