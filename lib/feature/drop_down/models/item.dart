@@ -4,7 +4,8 @@ part 'item.freezed.dart';
 part 'item.g.dart';
 
 @freezed
-class Item with _$Item {
+class Item with _$Item implements A{
+
   const factory Item({
     /// id
     required int id,
@@ -19,4 +20,14 @@ class Item with _$Item {
   }) = _Item;
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+
+  const Item._();
+
+  @override
+  String get dropDownLabel => name;
+
 }
+
+ abstract class A {
+   String get dropDownLabel;
+ }
