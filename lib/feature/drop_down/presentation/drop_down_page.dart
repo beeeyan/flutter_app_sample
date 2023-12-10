@@ -8,6 +8,8 @@ import '../../../util/dropdown_item.dart';
 class DropdownPage extends StatelessWidget {
   const DropdownPage({super.key});
 
+  static const path = 'dropdown';
+
   @override
   Widget build(BuildContext context) {
     final itemList = items.map(Item.fromJson).toList();
