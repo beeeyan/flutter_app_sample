@@ -117,10 +117,9 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Item extends _Item {
+class _$_Item implements _Item {
   const _$_Item(
-      {required this.id, required this.name, required this.description})
-      : super._();
+      {required this.id, required this.name, required this.description});
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
 
@@ -170,12 +169,11 @@ class _$_Item extends _Item {
   }
 }
 
-abstract class _Item extends Item {
+abstract class _Item implements Item {
   const factory _Item(
       {required final int id,
       required final String name,
       required final String description}) = _$_Item;
-  const _Item._() : super._();
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
 
