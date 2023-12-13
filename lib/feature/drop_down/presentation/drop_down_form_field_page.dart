@@ -4,11 +4,12 @@ import 'package:flutter_app_sample/feature/drop_down/models/item.dart';
 import 'package:gap/gap.dart';
 
 import '../../../util/dropdown_item.dart';
+import '../sample_data.dart';
 
-class DropdownPage extends StatelessWidget {
-  const DropdownPage({super.key});
+class DropdownFromFieldPage extends StatelessWidget {
+  const DropdownFromFieldPage({super.key});
 
-  static const path = 'dropdown';
+  static const path = 'dropdownformfield';
 
   @override
   Widget build(BuildContext context) {
@@ -20,43 +21,14 @@ class DropdownPage extends StatelessWidget {
       },
     ).toList();
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('ドロップダウンサンプル'),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text(
-                'ドロップダウン最小限',
-              ),
-              const Gap(10),
-              DropdownButtonFormField(
-                items: itemList
-                    .map(
-                      (item) => DropdownMenuItem(
-                        value: item,
-                        child: Text(
-                          item.name,
-                        ),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) => print(value),
-              ),
-              const Gap(20),
-              const Text(
-                'テキストフォーム',
-              ),
-              const Gap(10),
-              SizedBox(
-                width: 200,
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              const Gap(20),
               const Text(
                 'プルダウン1',
               ),
@@ -82,6 +54,11 @@ class DropdownPage extends StatelessWidget {
                   onChanged: (value) => print(value),
                 ),
               ),
+              const Gap(20),
+              const Text(
+                'プルダウン2',
+              ),
+              const Gap(10),
               CustomDropdownButtonFormField(
                 itemList: itemList2,
                 onChanged: (value) {
@@ -99,9 +76,3 @@ class DropdownPage extends StatelessWidget {
     );
   }
 }
-
-final items = <Map<String, dynamic>>[
-  {'id': 1, 'name': '椅子', 'description': '座るためのもの'},
-  {'id': 2, 'name': 'テーブル', 'description': '食事を置くためのもの'},
-  {'id': 3, 'name': 'ベッド', 'description': '寝るためのもの'},
-];
