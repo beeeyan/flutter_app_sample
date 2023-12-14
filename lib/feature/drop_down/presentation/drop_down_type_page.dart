@@ -4,14 +4,23 @@ import 'package:gap/gap.dart';
 
 import '../sample_data.dart';
 
-class DropdownTypePage extends StatelessWidget {
+class DropdownTypePage extends StatefulWidget {
   const DropdownTypePage({super.key});
 
   static const path = 'dropdowntype';
 
   @override
+  State<DropdownTypePage> createState() => _DropdownTypePageState();
+}
+
+class _DropdownTypePageState extends State<DropdownTypePage> {
+  final itemList = items.map(Item.fromJson).toList();
+  Item? dropdownValue;
+  Item? dropdownMenuValue;
+  Item? dropdownformfieldValue;
+
+  @override
   Widget build(BuildContext context) {
-    final itemList = items.map(Item.fromJson).toList();
     return Scaffold(
       appBar: AppBar(
         title: const Text('ドロップダウンに関連するWidget'),
@@ -26,7 +35,7 @@ class DropdownTypePage extends StatelessWidget {
               ),
               const Gap(10),
               DropdownButton(
-                value: itemList[0],
+                value: dropdownValue,
                 items: itemList
                     .map(
                       (item) => DropdownMenuItem(
@@ -37,7 +46,30 @@ class DropdownTypePage extends StatelessWidget {
                       ),
                     )
                     .toList(),
-                onChanged: (value) => print(value),
+                onChanged: (value) {
+                  setState(() {
+                    dropdownValue = value;
+                  });
+                },
+              ),
+              const Gap(30),
+              DropdownMenu<Item>(
+                label: const Text(
+                  'DropdownMenu',
+                ),
+                onSelected: (value) {
+                  setState(() {
+                    dropdownMenuValue = value;
+                  });
+                },
+                dropdownMenuEntries: itemList
+                    .map(
+                      (item) => DropdownMenuEntry(
+                        value: item,
+                        label: item.name,
+                      ),
+                    )
+                    .toList(),
               ),
               const Gap(30),
               const Text(
@@ -45,6 +77,7 @@ class DropdownTypePage extends StatelessWidget {
               ),
               const Gap(10),
               DropdownButtonFormField(
+                value: dropdownformfieldValue,
                 items: itemList
                     .map(
                       (item) => DropdownMenuItem(
@@ -55,7 +88,11 @@ class DropdownTypePage extends StatelessWidget {
                       ),
                     )
                     .toList(),
-                onChanged: (value) => print(value),
+                onChanged: (value) {
+                  setState(() {
+                    dropdownformfieldValue = value;
+                  });
+                },
               ),
               const Gap(20),
             ],
