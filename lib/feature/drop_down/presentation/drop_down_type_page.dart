@@ -77,6 +77,8 @@ class _DropdownTypePageState extends State<DropdownTypePage> {
               ),
               const Gap(30),
               DropdownMenu<Item>(
+                enableFilter: true,
+                requestFocusOnTap: true,
                 label: const Text(
                   'DropdownMenu',
                 ),
