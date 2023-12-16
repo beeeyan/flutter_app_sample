@@ -53,27 +53,8 @@ class _DropdownTypePageState extends State<DropdownTypePage> {
                 },
               ),
               const Gap(30),
-              DropdownMenu<Item>(
-                label: const Text(
-                  'DropdownMenu',
-                ),
-                onSelected: (value) {
-                  setState(() {
-                    dropdownMenuValue = value;
-                  });
-                },
-                dropdownMenuEntries: itemList
-                    .map(
-                      (item) => DropdownMenuEntry(
-                        value: item,
-                        label: item.name,
-                      ),
-                    )
-                    .toList(),
-              ),
-              const Gap(30),
               const Text(
-                'DropdownButtonFormField「required」のみ指定',
+                'DropdownButtonFormField',
               ),
               const Gap(10),
               DropdownButtonFormField(
@@ -93,6 +74,25 @@ class _DropdownTypePageState extends State<DropdownTypePage> {
                     dropdownformfieldValue = value;
                   });
                 },
+              ),
+              const Gap(30),
+              DropdownMenu<Item>(
+                label: const Text(
+                  'DropdownMenu',
+                ),
+                onSelected: (value) {
+                  setState(() {
+                    dropdownMenuValue = value;
+                  });
+                },
+                dropdownMenuEntries: itemList
+                    .map(
+                      (item) => DropdownMenuEntry(
+                        value: item,
+                        label: item.name,
+                      ),
+                    )
+                    .toList(),
               ),
               const Gap(20),
             ],
