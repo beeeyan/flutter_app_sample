@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_sample/root.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'util/go_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,12 +18,16 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const RootPage(),
+          routeInformationParser:
+              ref.watch(goRouteProvider).routeInformationParser,
+          routeInformationProvider:
+              ref.watch(goRouteProvider).routeInformationProvider,
+          routerDelegate: ref.watch(goRouteProvider).routerDelegate,
     );
   }
 }

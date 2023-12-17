@@ -6,6 +6,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class RootPage extends ConsumerWidget {
   const RootPage({super.key});
 
+  static const path = '/';
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pageType = ref.watch(bottomBarPageTypeProvider);
