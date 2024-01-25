@@ -1,0 +1,48 @@
+name: version up
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  create-version-up-pr:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FILE_PATH: pubspec.yaml
+      TZ: 'Asia/Tokyo'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set current datetime as env variable
+        run: echo "CURRENT_DATETIME=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
+      - name: Create new branch
+        run: |
+          git switch -c fix/versionup_${{ env.CURRENT_DATETIME }}
+          git push -u origin fix/versionup_${{ env.CURRENT_DATETIME }}
+
+      - name: version up
+        run: |
+          OLD_VERSION=$(awk '/version:/ {print $2; exit}' ${env.FILE_PATH})
+          IFS='.' read -r -a version_parts <<< "${OLD_VERSION%+*}"
+          IFS='+' read -r -a build_parts <<< "${OLD_VERSION##*.}"
+          new_patch=$((version_parts[2] + 1))
+          new_build=$((build_parts[1] + 1))
+          NEW_VERSION="${version_parts[0]}.${version_parts[1]}.$new_patch+$new_build"
+          echo $NEW_VERSION >> $GITHUB_ENV
+          sed -i "0,/version:/s//version: $NEW_VERSION/" ${env.FILE_PATH}
+
+      - name: Add and Commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          branch: fix/versionup_${{ env.CURRENT_DATETIME }}
+          message: ${{ env.NEW_VERSION }}
+          add: "${{ env.FILE_PATH }}"
+
+      - name: Create pull request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: fix/versionup_${{ env.CURRENT_DATETIME }}
+          destination_branch: develop
+          pr_title: ${{ env.NEW_VERSION }}
