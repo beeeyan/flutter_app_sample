@@ -30,7 +30,7 @@ jobs:
           new_patch=$((version_parts[2] + 1))
           new_build=$((build_parts[1] + 1))
           NEW_VERSION="${version_parts[0]}.${version_parts[1]}.$new_patch+$new_build"
-          echo $NEW_VERSION >> $GITHUB_ENV
+          echo "NEW_VERSION=${NEW_VERSION}" >> $GITHUB_ENV
           sed -i "0,/version:/s//version: $NEW_VERSION/" ${{ env.FILE_PATH }}
 
       - name: Add and Commit
