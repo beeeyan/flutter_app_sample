@@ -14,6 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Checkout develop branch
+        run: git fetch origin develop:develop && git checkout develop
+
       - name: Set current datetime as env variable
         run: echo "CURRENT_DATETIME=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
@@ -31,7 +34,7 @@ jobs:
           new_build=$((build_parts[1] + 1))
           NEW_VERSION="${version_parts[0]}.${version_parts[1]}.$new_patch+$new_build"
           echo "NEW_VERSION=${NEW_VERSION}" >> $GITHUB_ENV
-          sed -i "0,/version:/s//version: $NEW_VERSION/" ${{ env.FILE_PATH }}
+          sed -i "0,/version: .*/s//version: $NEW_VERSION/" "${{ env.FILE_PATH }}"
 
       - name: Add and Commit
         uses: EndBug/add-and-commit@v9
