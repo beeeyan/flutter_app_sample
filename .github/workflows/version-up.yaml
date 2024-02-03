@@ -14,9 +14,8 @@ jobs:
     steps:
       - name: Clone repository & Checkout
         uses: actions/checkout@v4
-
-      - name: Checkout develop branch
-        run: git fetch origin develop:develop && git checkout develop
+        with:
+          ref: develop
 
       - name: Set current datetime as env variable
         run: echo "CURRENT_DATETIME=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
