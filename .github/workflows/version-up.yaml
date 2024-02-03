@@ -1,0 +1,79 @@
+name: version up
+on:
+  pull_request:
+    types: [opened]
+    branches:
+      - main
+jobs:
+  create-version-up-pr:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FILE_PATH: pubspec.yaml
+      TZ: 'Asia/Tokyo'
+    steps:
+      - name: Clone repository & Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+
+      - name: Set current datetime as env variable
+        run: echo "CURRENT_DATETIME=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
+      - name: Create new branch
+        run: |
+          git switch -c fix/versionup_${{ env.CURRENT_DATETIME }}
+          git push -u origin fix/versionup_${{ env.CURRENT_DATETIME }}
+
+      - name: Determine version type from PR title
+        id: version_type
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          if [[ "$PR_TITLE" == *"メジャー"* ]]; then
+            echo "VERSION_TYPE=major" >> $GITHUB_ENV
+          elif [[ "$PR_TITLE" == *"マイナー"* ]]; then
+            echo "VERSION_TYPE=minor" >> $GITHUB_ENV
+          else
+            echo "VERSION_TYPE=patch" >> $GITHUB_ENV
+          fi
+
+      - name: version up
+        run: |
+          OLD_VERSION=$(awk '/version:/ {print $2; exit}' ${{ env.FILE_PATH }})
+          IFS='.' read -r -a version_parts <<< "${OLD_VERSION%+*}"
+          IFS='+' read -r -a build_parts <<< "${OLD_VERSION##*.}"
+          new_build=$((build_parts[1] + 1))
+          new_major=${version_parts[0]}
+          new_minor=${version_parts[1]}
+          new_patch=${version_parts[2]}
+          case $VERSION_TYPE in
+            major)
+              new_major=$((new_major + 1))
+              new_minor=0
+              new_patch=0
+              ;;
+            minor)
+              new_minor=$((new_minor + 1))
+              new_patch=0
+              ;;
+            patch)
+              new_patch=$((new_patch + 1))
+              ;;
+          esac
+          NEW_VERSION="${new_major}.${new_minor}.$new_patch+$new_build"
+          echo "NEW_VERSION=${NEW_VERSION}" >> $GITHUB_ENV
+          sed -i "0,/version: .*/s//version: $NEW_VERSION/" "${{ env.FILE_PATH }}"
+
+      - name: Add and Commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          branch: fix/versionup_${{ env.CURRENT_DATETIME }}
+          message: ${{ env.NEW_VERSION }}
+          add: "${{ env.FILE_PATH }}"
+
+      - name: Create pull request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: fix/versionup_${{ env.CURRENT_DATETIME }}
+          destination_branch: develop
+          pr_title: ${{ env.NEW_VERSION }}
