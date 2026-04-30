@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_sample/speech_to_text_action.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // import '../feature/pokemon/presentation/pokemon_view.dart';
@@ -35,10 +36,16 @@ enum BottomBarPageType {
     FieldSampleList(),
   ),
   fifthPage(
-    '音声コントロール',
+    '音声コントロール確認',
     Icon(Icons.mic),
     VoiceControl(),
+  ),
+  sixthPage(
+    '音声認識で画面遷移',
+    Icon(Icons.mic),
+    SpeechToTextAction(),
   );
+  
 
   const BottomBarPageType(
     this.title,

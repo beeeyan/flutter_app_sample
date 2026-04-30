@@ -43,6 +43,7 @@ dependencies:
   hooks_riverpod: ^2.3.6
   logger: ^1.1.0
   package_info_plus: ^8.1.1
+  speech_to_text: ^7.3.0
   version: ^3.0.2
 
 dev_dependencies:
