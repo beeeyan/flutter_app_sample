@@ -7,6 +7,7 @@ import '../feature/field_size/presentation/dropdown_button_size_sample.dart';
 import '../feature/field_size/presentation/dropdown_menu_size_sample.dart';
 import '../feature/field_size/presentation/text_field_size_sample.dart';
 import '../feature/field_size/presentation/field_size_sample.dart';
+import '../feature/voice_control/presentation/speech_result_view.dart';
 import '../root.dart';
 
 final goRouteProvider = Provider<GoRouter>(
@@ -41,6 +42,10 @@ final goRouteProvider = Provider<GoRouter>(
               path: FieldSizeSamplePage.path,
               builder: (context, state) => const FieldSizeSamplePage(),
             ),
+            GoRoute(
+              path: SpeechResultView.path,
+              builder: (context, state) => const SpeechResultView(),
+            )
           ],
         ),
       ],

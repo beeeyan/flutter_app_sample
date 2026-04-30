@@ -21,6 +21,8 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       title: 'Flutter Demo',
+      // セマンティックの実装状況を確認する
+      // showSemanticsDebugger: true,
       theme: ThemeData(
         fontFamily: 'NotoSansJP',
         primarySwatch: Colors.blue,
