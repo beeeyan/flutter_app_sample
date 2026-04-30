@@ -5,7 +5,7 @@ class VoiceControl extends StatelessWidget {
   const VoiceControl({super.key});
 
   void _showDialog(BuildContext context, String label) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('タップされました'),
@@ -27,6 +27,7 @@ class VoiceControl extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Gap(24),
             // ✅ 良い例: テキスト付きボタン（音声コントロールでラベルが認識される）
             const Text('✅ 良い例', style: TextStyle(fontWeight: FontWeight.bold)),
             const Gap(8),
@@ -82,7 +83,8 @@ class VoiceControl extends StatelessWidget {
             GestureDetector(
               onTap: () => _showDialog(context, 'ラベルなしタップエリア'),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 decoration: BoxDecoration(
                   color: Colors.red.shade100,
                   borderRadius: BorderRadius.circular(8),
